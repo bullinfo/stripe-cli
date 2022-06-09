@@ -1146,6 +1146,7 @@ func addAllResourcesCmds(rootCmd *cobra.Command) {
 		"return_url":     "string",
 	}, &Config)
 	resource.NewOperationCmd(rSetupIntentsCmd.Cmd, "create", "/v1/setup_intents", http.MethodPost, map[string]string{
+		"attach_to_self": "boolean",
 		"confirm":        "boolean",
 		"customer":       "string",
 		"description":    "string",
@@ -1155,6 +1156,7 @@ func addAllResourcesCmds(rootCmd *cobra.Command) {
 		"usage":          "string",
 	}, &Config)
 	resource.NewOperationCmd(rSetupIntentsCmd.Cmd, "list", "/v1/setup_intents", http.MethodGet, map[string]string{
+		"attach_to_self": "boolean",
 		"created":        "integer",
 		"customer":       "string",
 		"ending_before":  "string",
@@ -1166,6 +1168,7 @@ func addAllResourcesCmds(rootCmd *cobra.Command) {
 		"client_secret": "string",
 	}, &Config)
 	resource.NewOperationCmd(rSetupIntentsCmd.Cmd, "update", "/v1/setup_intents/{intent}", http.MethodPost, map[string]string{
+		"attach_to_self": "boolean",
 		"customer":       "string",
 		"description":    "string",
 		"payment_method": "string",
