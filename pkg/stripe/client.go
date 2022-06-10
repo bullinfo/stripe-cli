@@ -2,6 +2,7 @@ package stripe
 
 import (
 	"context"
+	"crypto/tls"
 	"io"
 	"net"
 	"net/http"
