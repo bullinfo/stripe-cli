@@ -537,7 +537,7 @@ func Init(ctx context.Context, cfg *Config) (*Proxy, error) {
 					},
 					Timeout: defaultTimeout,
 					Transport: &http.Transport{
-						TLSClientConfig: &tls.Config{InsecureSkipVerify: cfg.SkipVerify},
+						TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 					},
 				},
 				Log:             p.cfg.Log,
