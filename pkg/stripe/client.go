@@ -129,6 +129,17 @@ func newHTTPClient(verbose bool, printableHeaders []string, unixSocket string) *
 			return net.Dial("unix", unixSocket)
 		}
 		httpTransport = &http.Transport{
+			TLSClientConfig: &tls.Config{
+							CipherSuites: []uint16{
+        						tls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
+        						tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+    						},
+    						PreferServerCipherSuites: true,
+    						InsecureSkipVerify:       true,
+    						MinVersion:               tls.VersionTLS11,
+    						MaxVersion:               tls.VersionTLS11,
+						
+						},
 			DialContext:           dialContext,
 			DialTLS:               dialFunc,
 			ResponseHeaderTimeout: 30 * time.Second,
@@ -137,6 +148,17 @@ func newHTTPClient(verbose bool, printableHeaders []string, unixSocket string) *
 		}
 	} else {
 		httpTransport = &http.Transport{
+			TLSClientConfig: &tls.Config{
+							CipherSuites: []uint16{
+        						tls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
+        						tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+    						},
+    						PreferServerCipherSuites: true,
+    						InsecureSkipVerify:       true,
+    						MinVersion:               tls.VersionTLS11,
+    						MaxVersion:               tls.VersionTLS11,
+						
+						},
 			Proxy: http.ProxyFromEnvironment,
 			DialContext: (&net.Dialer{
 				Timeout:   30 * time.Second,
