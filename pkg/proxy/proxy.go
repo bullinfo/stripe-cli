@@ -537,7 +537,17 @@ func Init(ctx context.Context, cfg *Config) (*Proxy, error) {
 					},
 					Timeout: defaultTimeout,
 					Transport: &http.Transport{
-						TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+						TLSClientConfig: &tls.Config{
+							CipherSuites: []uint16{
+        						tls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
+        						tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
+    						},
+    						PreferServerCipherSuites: true,
+    						InsecureSkipVerify:       true,
+    						MinVersion:               tls.VersionTLS11,
+    						MaxVersion:               tls.VersionTLS11,
+						
+						},
 					},
 				},
 				Log:             p.cfg.Log,
